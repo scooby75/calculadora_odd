@@ -2,11 +2,15 @@ import streamlit as st
 
 # Função para calcular a odd Back
 def calc_odd_back(lucro_desejado, valor_aposta):
-    return (lucro_desejado / valor_aposta) + 1
+    return (lucro_desejado + valor_aposta) / valor_aposta
 
-# Função para calcular o valor necessário para apostar na odd Lay
-def calc_odd_lay(lucro_desejado, valor_aposta):
-    return valor_aposta / (1 - lucro_desejado / valor_aposta)
+# Função para calcular a responsabilidade e odd Lay
+def calc_responsabilidade_lay(valor_aposta, odd_lay):
+    return (odd_lay - 1) * valor_aposta
+
+# Função para calcular o valor necessário para apostar no Lay para o mesmo lucro
+def calc_valor_aposta_lay(lucro_desejado, odd_lay):
+    return lucro_desejado / (1 - 1 / odd_lay)
 
 # Título do app
 st.title("Calculadora de Odds Back e Lay")
@@ -21,12 +25,13 @@ if st.button("Calcular Odds"):
         # Calcular a odd Back
         odd_back = calc_odd_back(lucro_desejado, valor_aposta)
         
-        # Calcular a odd Lay (usando valor da aposta e lucro desejado)
-        odd_lay = 1 + lucro_desejado / valor_aposta
+        # Presumindo que odd lay seja 1.30 para cálculo da responsabilidade e valor lay
+        odd_lay = 1.30
+        valor_aposta_lay = calc_valor_aposta_lay(lucro_desejado, odd_lay)
         
         # Exibir os resultados
         st.write(f"Para obter um lucro de R$ {lucro_desejado:.2f} com uma aposta de R$ {valor_aposta:.2f}:")
         st.write(f"- A odd Back necessária seria: **{odd_back:.2f}**")
-        st.write(f"- A odd Lay necessária seria: **{odd_lay:.2f}** (apostando R$ {valor_aposta:.2f})")
+        st.write(f"- Para uma odd Lay de {odd_lay:.2f}, você precisaria apostar **R$ {valor_aposta_lay:.2f}** para obter o mesmo lucro.")
     else:
         st.warning("Por favor, insira valores válidos para a aposta e o lucro desejado.")
