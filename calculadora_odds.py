@@ -3,13 +3,13 @@ import streamlit as st
 # Função para converter odd Lay em odd Back considerando a taxa da exchange
 def odd_lay_para_odd_back(odd_lay, taxa):
     try:
-        # Debug: Mostrar valores intermediários
-        st.write(f"Debug: Odd Lay = {odd_lay}, Taxa = {taxa}")
-        
         # Calculando a odd Back com a fórmula correta
         odd_back = (odd_lay * (1 - taxa)) / ((1 - taxa) * odd_lay - 1)
         
-        # Debug: Mostrar valor calculado da odd Back antes de retornar
+        # Exibir valores de debug para verificação
+        st.write(f"Debug: Odd Lay = {odd_lay}, Taxa = {taxa}")
+        st.write(f"Debug: Numerador = {odd_lay * (1 - taxa)}")
+        st.write(f"Debug: Denominador = {(1 - taxa) * odd_lay - 1}")
         st.write(f"Debug: Odd Back calculada = {odd_back:.4f}")
         
         return odd_back
@@ -26,9 +26,6 @@ taxa_percentual = st.number_input("Informe a taxa da exchange (%):", min_value=0
 
 # Convertendo a taxa percentual para decimal
 taxa_decimal = taxa_percentual / 100.0
-
-# Debug: Mostrar valor da taxa convertida para decimal
-st.write(f"Debug: Taxa convertida para decimal = {taxa_decimal}")
 
 # Botão para calcular a odd Back equivalente
 if st.button("Calcular"):
