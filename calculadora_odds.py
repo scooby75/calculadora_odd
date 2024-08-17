@@ -12,7 +12,7 @@ def odd_lay_para_odd_back(odd_lay):
         return None
 
 # Título do app
-st.title("Conversão de Odds Lay para Odds Back")
+st.title("Conversão de Odds Lay para Back")
 
 # Entrada de dados pelo usuário
 odd_lay = st.number_input("Informe a odd Lay:", min_value=1.01, format="%.2f")
