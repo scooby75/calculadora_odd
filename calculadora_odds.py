@@ -3,16 +3,15 @@ import streamlit as st
 # Função para converter odd Lay em odd Back considerando a taxa da exchange
 def odd_lay_para_odd_back(odd_lay, taxa):
     try:
-        probabilidade_lay = 1 / odd_lay
-        probabilidade_nao_ocorrer = 1 - (probabilidade_lay * (1 - taxa))
-        odd_back = 1 / probabilidade_nao_ocorrer
+        # Calculando a odd Back com base na fórmula fornecida
+        odd_back = (odd_lay * (1 - taxa)) / (1 - ((odd_lay - 1) * (1 - taxa)))
         return odd_back
     except ZeroDivisionError:
-        st.error("A odd Lay deve ser maior que 1.")
+        st.error("A odd Lay deve ser maior que 1 e a taxa deve ser menor que 100%.")
         return None
 
 # Título do app
-st.title("Conversão de Odds Lay para Odds Back com Taxa da Exchange")
+st.title("Conversão de Odds com Taxa da Exchange")
 
 # Entrada de dados pelo usuário
 odd_lay = st.number_input("Informe a odd Lay:", min_value=1.01, format="%.2f")
