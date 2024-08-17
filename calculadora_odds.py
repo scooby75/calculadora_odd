@@ -3,7 +3,6 @@ import streamlit as st
 # Função para converter odd Lay em odd Back considerando a taxa da exchange
 def odd_lay_para_odd_back(odd_lay, taxa):
     try:
-        # Calculando a odd Back com a fórmula correta
         odd_back = 1 + (1 - taxa) / (odd_lay - 1)
         return odd_back
     except ZeroDivisionError:
@@ -13,7 +12,6 @@ def odd_lay_para_odd_back(odd_lay, taxa):
 # Função para converter odd Back em odd Lay considerando a taxa da exchange
 def odd_back_para_odd_lay(odd_back, taxa):
     try:
-        # Calculando a odd Lay com a fórmula correta
         odd_lay = 1 + (1 - taxa) / (odd_back - 1)
         return odd_lay
     except ZeroDivisionError:
@@ -29,8 +27,8 @@ tab1, tab2 = st.tabs(["Lay para Back", "Back para Lay"])
 # Aba 1: Lay para Back
 with tab1:
     st.header("Conversão de Odd Lay para Odd Back")
-    odd_lay = st.number_input("Informe a odd Lay:", min_value=1.01, format="%.2f")
-    taxa_percentual = st.number_input("Informe a taxa da exchange (%):", min_value=0.0, max_value=100.0, format="%.2f")
+    odd_lay = st.number_input("Informe a odd Lay:", min_value=1.01, format="%.2f", key="odd_lay")
+    taxa_percentual = st.number_input("Informe a taxa da exchange (%):", min_value=0.0, max_value=100.0, format="%.2f", key="taxa_percentual_lay")
 
     taxa_decimal = taxa_percentual / 100.0
 
@@ -45,8 +43,8 @@ with tab1:
 # Aba 2: Back para Lay
 with tab2:
     st.header("Conversão de Odd Back para Odd Lay")
-    odd_back = st.number_input("Informe a odd Back:", min_value=1.01, format="%.2f")
-    taxa_percentual = st.number_input("Informe a taxa da exchange (%):", min_value=0.0, max_value=100.0, format="%.2f")
+    odd_back = st.number_input("Informe a odd Back:", min_value=1.01, format="%.2f", key="odd_back")
+    taxa_percentual = st.number_input("Informe a taxa da exchange (%):", min_value=0.0, max_value=100.0, format="%.2f", key="taxa_percentual_back")
 
     taxa_decimal = taxa_percentual / 100.0
 
