@@ -7,7 +7,7 @@ def odd_lay_para_odd_back(odd_lay, taxa):
         st.write(f"Debug: Odd Lay = {odd_lay}, Taxa = {taxa}")
         
         # Calculando a odd Back com a fórmula correta
-        odd_back = (odd_lay * (1 - taxa)) / (odd_lay - 1)
+        odd_back = (odd_lay * (1 - taxa)) / ((1 - taxa) * odd_lay - 1)
         
         # Debug: Mostrar valor calculado da odd Back antes de retornar
         st.write(f"Debug: Odd Back calculada = {odd_back:.4f}")
