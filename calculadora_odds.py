@@ -1,26 +1,35 @@
 import streamlit as st
 
-# Função para converter odd Lay em odd Back
-def odd_lay_para_odd_back(odd_lay):
-    probabilidade_lay = 1 / odd_lay
-    probabilidade_nao_ocorrer = 1 - probabilidade_lay
-    odd_back = 1 / probabilidade_nao_ocorrer
-    return odd_back
+# Função para converter odd Lay em odd Back considerando a taxa da exchange
+def odd_lay_para_odd_back(odd_lay, taxa):
+    try:
+        probabilidade_lay = 1 / odd_lay
+        probabilidade_nao_ocorrer = 1 - (probabilidade_lay * (1 - taxa))
+        odd_back = 1 / probabilidade_nao_ocorrer
+        return odd_back
+    except ZeroDivisionError:
+        st.error("A odd Lay deve ser maior que 1.")
+        return None
 
 # Título do app
-st.title("Conversão de Odds Lay para Odds Back")
+st.title("Conversão de Odds Lay para Odds Back com Taxa da Exchange")
 
 # Entrada de dados pelo usuário
 odd_lay = st.number_input("Informe a odd Lay:", min_value=1.01, format="%.2f")
+taxa_percentual = st.number_input("Informe a taxa da exchange (%):", min_value=0.0, max_value=100.0, format="%.2f")
+
+# Convertendo a taxa percentual para decimal
+taxa_decimal = taxa_percentual / 100.0
 
 # Botão para calcular a odd Back equivalente
 if st.button("Calcular"):
     if odd_lay > 1:
         # Calcular a odd Back equivalente
-        odd_back = odd_lay_para_odd_back(odd_lay)
+        odd_back = odd_lay_para_odd_back(odd_lay, taxa_decimal)
         
         # Exibir o resultado
-        st.write(f"Para uma odd Lay de {odd_lay:.2f}:")
-        st.write(f"- A odd Back equivalente é {odd_back:.2f}.")
+        if odd_back:
+            st.write(f"Para uma odd Lay de {odd_lay:.2f} com uma taxa de exchange de {taxa_percentual:.2f}%:")
+            st.write(f"- A odd Back equivalente é {odd_back:.2f}.")
     else:
         st.warning("Por favor, insira uma odd Lay válida (maior que 1).")
