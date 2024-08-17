@@ -6,7 +6,7 @@ def calc_odd_back(stake, lucro_desejado):
 
 # Função para calcular a odd Lay
 def calc_odd_lay(stake, lucro_desejado):
-    return (lucro_desejado / stake) + 1
+    return (stake + lucro_desejado) / stake
 
 # Título do app
 st.title("Calculadora de Odds Back e Lay")
