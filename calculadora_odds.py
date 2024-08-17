@@ -3,6 +3,9 @@ import streamlit as st
 # Função para converter odd Lay em odd Back considerando a taxa da exchange
 def odd_lay_para_odd_back(odd_lay, taxa):
     try:
+        if odd_lay <= taxa:
+            return None  # Verificação para garantir que o divisor não seja zero ou negativo
+
         # Calculando a odd Back com base na fórmula correta
         odd_back = (odd_lay * (1 - taxa)) / (odd_lay - taxa)
         return odd_back
