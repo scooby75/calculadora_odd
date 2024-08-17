@@ -19,14 +19,14 @@ def odd_back_para_odd_lay(odd_back, taxa):
         return None
 
 # Título do app
-st.title("Conversão de Odds com Taxa da Exchange")
+st.title("Conversão de Odds")
 
 # Criando as abas
 tab1, tab2 = st.tabs(["Lay para Back", "Back para Lay"])
 
 # Aba 1: Lay para Back
 with tab1:
-    st.header("Conversão de Odd Lay para Odd Back")
+    st.header("Odd Lay para Odd Back")
     odd_lay = st.number_input("Informe a odd Lay:", min_value=1.01, format="%.2f", key="odd_lay")
     taxa_percentual = st.number_input("Informe a taxa da exchange (%):", min_value=0.0, max_value=100.0, format="%.2f", key="taxa_percentual_lay")
 
@@ -42,7 +42,7 @@ with tab1:
 
 # Aba 2: Back para Lay
 with tab2:
-    st.header("Conversão de Odd Back para Odd Lay")
+    st.header("Odd Back para Odd Lay")
     odd_back = st.number_input("Informe a odd Back:", min_value=1.01, format="%.2f", key="odd_back")
     taxa_percentual = st.number_input("Informe a taxa da exchange (%):", min_value=0.0, max_value=100.0, format="%.2f", key="taxa_percentual_back")
 
