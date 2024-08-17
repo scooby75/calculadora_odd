@@ -21,6 +21,6 @@ if st.button("Calcular"):
         
         # Exibir o resultado
         st.write(f"Para uma odd Lay de {odd_lay:.2f}:")
-        st.write(f"- A odd Back equivalente seria {odd_back:.2f}.")
+        st.write(f"- A odd Back equivalente é {odd_back:.2f}.")
     else:
         st.warning("Por favor, insira uma odd Lay válida (maior que 1).")
