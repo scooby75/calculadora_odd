@@ -4,7 +4,7 @@ import streamlit as st
 def odd_lay_para_odd_back(odd_lay, taxa):
     try:
         # Calculando a odd Back com base na fórmula correta
-        odd_back = (odd_lay * (1 - taxa)) / ((odd_lay - 1) + odd_lay * (1 - taxa))
+        odd_back = (odd_lay * (1 - taxa)) / (odd_lay - taxa)
         return odd_back
     except ZeroDivisionError:
         st.error("Erro na fórmula: verifique os valores de entrada.")
