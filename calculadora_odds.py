@@ -5,20 +5,13 @@ def odd_lay_para_odd_back(odd_lay, taxa):
     try:
         # Calculando a odd Back com a fórmula correta
         odd_back = (odd_lay * (1 - taxa)) / ((1 - taxa) * odd_lay - 1)
-        
-        # Exibir valores de debug para verificação
-        st.write(f"Debug: Odd Lay = {odd_lay}, Taxa = {taxa}")
-        st.write(f"Debug: Numerador = {odd_lay * (1 - taxa)}")
-        st.write(f"Debug: Denominador = {(1 - taxa) * odd_lay - 1}")
-        st.write(f"Debug: Odd Back calculada = {odd_back:.4f}")
-        
         return odd_back
     except ZeroDivisionError:
         st.error("Erro na fórmula: verifique os valores de entrada.")
         return None
 
 # Título do app
-st.title("Teste de Conversão de Odds Lay para Odds Back com Taxa da Exchange")
+st.title("Conversão de Odds Lay para Odds Back com Taxa da Exchange")
 
 # Entrada de dados pelo usuário
 odd_lay = st.number_input("Informe a odd Lay:", min_value=1.01, format="%.2f")
